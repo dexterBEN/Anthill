@@ -1,8 +1,16 @@
 
 public class Ant {
 	
-	int coordinates[][];
+	//Purpose ==> each time the queen call "giveBirth" i choose randomly between WORKER/FIGHTER
+	public enum AntType{
+		QUEEN,
+		WORKER,
+		FIGHTER
+	}
+	
 	String id;
+	int coordinates[][];
+	
 	
 	//constructor
 	public Ant(int coordinates[][], String id) {
