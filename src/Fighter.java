@@ -1,10 +1,13 @@
+import java.util.UUID;
 
 public class Fighter extends Ant{
 
-	public Fighter(int[][] coordinates, String id) {
-		super(coordinates, id);
+	public Fighter(int x, int y, String id) {
+		super(x, y, id);
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 	/*
 	 * checkEnemy() ==> checkEnemy if their are enemy in the sale

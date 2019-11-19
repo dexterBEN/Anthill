@@ -1,13 +1,14 @@
 
 public class Worker extends Ant {
 	
+	public Worker(int x, int y, String id) {
+		super(x, y, id);
+		// TODO Auto-generated constructor stub
+	}
 	boolean food = false;
 	boolean water = false;
 
-	public Worker(int[][] coordinates, String id) {
-		super(coordinates, id);
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	/*
 	 * getFood() ==> set food boolean to true until the worker return to the  queen
