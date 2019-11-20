@@ -46,5 +46,17 @@ public class MapManager {
 		      System.out.println();
 		    }
 	}
+	
+	public static String printAntOnMap(Ant ant) {
+		String antBadge = "";
+		if(ant instanceof Worker) {
+			antBadge = "w ";
+		}else if(ant instanceof Fighter) {
+			antBadge = "f ";
+		}
+		
+		return antBadge;
+		
+	}
 
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public abstract class Ant {
@@ -5,7 +7,14 @@ public abstract class Ant {
 	//Purpose ==> each time the queen call "giveBirth" i choose randomly between WORKER/FIGHTER
 	/*public enum ANT_TYPES{
 		QUEEN(1),
-		WORKER(2),
+		WORKER(2){
+			
+			public Ant anfFactory() {
+				
+				return  new Worker(2, 2, Ant.setId());
+			}
+			
+		},
 		FIGHTER(3);
 		
 		private static ANT_TYPES[] types = ANT_TYPES.values(); 
@@ -13,6 +22,14 @@ public abstract class Ant {
 		//Constructor
 		ANT_TYPES(int type){
 			this.type = type;
+		}
+		
+		
+		abstract Ant anfFactory();
+		
+		static Ant createFromIndex(int i) {
+			
+			ANT_TYPES.values()[i]
 		}
 		
 		//public
@@ -34,12 +51,12 @@ public abstract class Ant {
 		return 0;
 	}
 	
-	public int setX() {
-		return 0;
+	public int setX(int x) {
+		return x;
 	}
 	
-	public int setY() {
-		return 0;
+	public int setY(int y) {
+		return y;
 	}
 	
 	public int  move(int x, int y) {
@@ -49,13 +66,16 @@ public abstract class Ant {
 	//
 	public static Ant createAnt(int i) {
 		Ant ant = null;
+		
+		//ANT_TYPES.FIGHTER.ordinal();
+		
 		switch(i) 
 		{
 			case 1:
-				ant = new Worker(2, 2, "978675689");
+				ant = new Worker(2, 2, Ant.setId());
 				break;
 			case 2:
-				ant = new Fighter(4, 4, "456787656");
+				ant = new Fighter(4, 4, Ant.setId());
 				break;
 		}
 		
