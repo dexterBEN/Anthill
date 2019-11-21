@@ -1,4 +1,10 @@
+package utils;
+
 import com.sun.javafx.collections.MapAdapterChange;
+
+import entities.Ant;
+import entities.Fighter;
+import entities.Worker;
 
 public class MapManager {
 	
@@ -55,8 +61,12 @@ public class MapManager {
 			antBadge = "f ";
 		}
 		
-		return antBadge;
+		return ant.getBadge();
 		
+	}
+	
+	public static boolean isEmpty(String map[][], int x, int y) {
+		return map[x][y] == "";
 	}
 
 }

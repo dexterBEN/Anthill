@@ -1,3 +1,4 @@
+package entities;
 import java.util.UUID;
 
 public class Fighter extends Ant{
@@ -5,6 +6,12 @@ public class Fighter extends Ant{
 	public Fighter(int x, int y, String id) {
 		super(x, y, id);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String getBadge() {
+		// TODO Auto-generated method stub
+		return "f ";
 	}
 
 	

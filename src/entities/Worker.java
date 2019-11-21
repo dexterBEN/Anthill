@@ -1,3 +1,4 @@
+package entities;
 
 public class Worker extends Ant {
 	
@@ -8,7 +9,15 @@ public class Worker extends Ant {
 	boolean food = false;
 	boolean water = false;
 
-	
+	public void getFood(boolean fd) {
+		
+	}
+
+	@Override
+	public String getBadge() {
+		// TODO Auto-generated method stub
+		return "w ";
+	}
 	
 	/*
 	 * getFood() ==> set food boolean to true until the worker return to the  queen

@@ -1,3 +1,5 @@
+package entities;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -5,39 +7,39 @@ import java.util.UUID;
 public abstract class Ant {
 	
 	//Purpose ==> each time the queen call "giveBirth" i choose randomly between WORKER/FIGHTER
-	/*public enum ANT_TYPES{
-		QUEEN(1),
-		WORKER(2){
-			
-			public Ant anfFactory() {
-				
-				return  new Worker(2, 2, Ant.setId());
-			}
-			
-		},
-		FIGHTER(3);
-		
-		private static ANT_TYPES[] types = ANT_TYPES.values(); 
-		
-		//Constructor
-		ANT_TYPES(int type){
-			this.type = type;
-		}
-		
-		
-		abstract Ant anfFactory();
-		
-		static Ant createFromIndex(int i) {
-			
-			ANT_TYPES.values()[i]
-		}
-		
-		//public
-	}*/
+//	public enum ANT_TYPES{
+//		QUEEN("Q"),
+//		WORKER(2){
+//			
+//			public Ant anfFactory() {
+//				
+//				return  new Worker(2, 2, Ant.setId());
+//			}
+//			
+//		},
+//		FIGHTER(3);
+//		
+//		private static ANT_TYPES[] types = ANT_TYPES.values(); 
+//		
+//		//Constructor
+//		ANT_TYPES(int type){
+//			this.type = type;
+//		}
+//		
+//		
+//		abstract Ant anfFactory();
+//		
+//		static Ant createFromIndex(int i) {
+//			
+//			ANT_TYPES.values()[i]
+//		}
+//		
+//		//public
+//	}
 	String [] antTypes = {"QUEEN","WORKER","FIGHTER"};
 	
-	String id;
-	int x, y;
+	public String id;
+	public int x, y;
 	
 	
 	//constructor
@@ -47,15 +49,15 @@ public abstract class Ant {
 		this.id = id;
 	}
 	
-	public int getPosition() {
+	public static int getPosition() {
 		return 0;
 	}
 	
-	public int setX(int x) {
+	public static int setX(int x) {
 		return x;
 	}
 	
-	public int setY(int y) {
+	public static int setY(int y) {
 		return y;
 	}
 	
@@ -71,6 +73,9 @@ public abstract class Ant {
 		
 		switch(i) 
 		{
+			case 0:
+				ant = new Queen(0, 0, Ant.setId());
+				break;
 			case 1:
 				ant = new Worker(2, 2, Ant.setId());
 				break;
@@ -87,9 +92,7 @@ public abstract class Ant {
 	    //System.out.println("uuid = " + uuid);
 	    return uuid;
 	}
-	
-	
-	
-	
+
+	public abstract String getBadge();
 	
 }
