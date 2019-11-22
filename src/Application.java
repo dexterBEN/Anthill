@@ -18,6 +18,7 @@ public class Application {
 		String [][] map;
 		Scanner sc = new Scanner(System.in);
 		MapManager mapManager = MapManager.getInstance();
+		Random randInt = new Random();
 		
 		//set width & height of map:
 		System.out.print("Give map width: ");
@@ -62,13 +63,43 @@ public class Application {
 		System.out.println("Map after set queen children pos:");
 		mapManager.drawMap(map, w, h);
 		
+		newLine();
+		newLine();
 		//simulation loop:
-		if(mapManager.isEmpty(map, q1.x, q1.y))
-		{
-			System.out.print("this space is full");
-		}else {
-			System.out.print("this space is empty");
+		int newX, newY;
+		for(int i = 0; i <= 4; i++) {
+			try {
+	            //System.out.println(i);
+				
+				//check position of each child:
+				
+				//generate random XY for each child
+				for(Ant children: q1.ants) {
+					newX = randInt.nextInt((w-1)+1) + 1;
+					System.out.print("New x:"+newX);
+					
+					newY = randInt.nextInt((h-1)+1) + 1;
+					System.out.println(" New y: "+newY);
+					
+					//check if new pair [X][Y] is free:
+					if(mapManager.isEmpty(map[newX][newY])) {
+						children.x = newX;
+						children.y = newY;
+						
+					}else {
+						
+					}
+				}
+				newLine();
+				newLine();
+	            Thread.sleep(5000);
+	        } catch (InterruptedException ie)
+	        {
+	            System.out.println("Scanning...");
+	            Thread.currentThread().interrupt();
+	        }
 		}
+		
 
 	}
 

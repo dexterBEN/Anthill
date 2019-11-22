@@ -65,8 +65,13 @@ public class MapManager {
 		
 	}
 	
-	public static boolean isEmpty(String map[][], int x, int y) {
-		return map[x][y] == "";
+	public static boolean isEmpty(String space) {
+		//return space != "e " || space != "* ";
+		if(space == "  ") {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }
