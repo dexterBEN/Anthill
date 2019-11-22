@@ -14,21 +14,11 @@ public class Application {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String [][] map;
-		Scanner sc = new Scanner(System.in);
+		MapSize mapSize = createMapSize();
 		MapManager mapManager = MapManager.getInstance();
-		
-		//set width & height of map:
-		System.out.print("Give map width: ");
-		String width = sc.nextLine();
-		System.out.print("Give map height: ");
-		String height = sc.nextLine();
-		int w = Integer.parseInt(width);
-		int h = Integer.parseInt(height);
-		
-		//fill map and draw it
-		map = mapManager.initMap(w, h);
+		String [][] map = mapManager.initMap(mapSize.getWidth(), mapSize.getHeight());
+
+
 		
 		//create queens set his params
 		Queen q1 = (Queen) Ant.createAnt(0);
@@ -72,4 +62,34 @@ public class Application {
 
 	}
 
+	private static MapSize createMapSize() {
+		Scanner sc = new Scanner(System.in);
+
+		//set width & height of map:
+		System.out.print("Give map width: ");
+		String width = sc.nextLine();
+		System.out.print("Give map height: ");
+		String height = sc.nextLine();
+		int w = Integer.parseInt(width);
+		int h = Integer.parseInt(height);
+		return new MapSize(w, h);
+	}
+
+	static class MapSize {
+		private final Integer width;
+		private final Integer height;
+
+		public MapSize(Integer width, Integer height) {
+			this.width = width;
+			this.height = height;
+		}
+
+		public Integer getWidth() {
+			return width;
+		}
+
+		public Integer getHeight() {
+			return height;
+		}
+	}
 }
