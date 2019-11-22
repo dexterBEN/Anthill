@@ -9,7 +9,7 @@ import utils.MapManager;
 
 import org.junit.jupiter.api.Test;
 
-import entities.Ant;
+import entities.QueenChildren;
 import entities.Queen;
 
 class MapManagerTest {
@@ -19,7 +19,7 @@ class MapManagerTest {
 		
 		MapManager mapManager = MapManager.getInstance();
 		
-		Queen q2 = (Queen) Ant.createAnt(0);
+		Queen q2 = (Queen) QueenChildren.createAnt(0);
 		String [][] map = mapManager.initMap(8, 8); 
 		//mapManager.printAntOnMap(q2);
 		map[q2.x][q2.y] = "q2";
@@ -33,7 +33,7 @@ class MapManagerTest {
 		
 		MapManager mapManager = MapManager.getInstance();
 		
-		Queen q2 = (Queen) Ant.createAnt(0);
+		Queen q2 = (Queen) QueenChildren.createAnt(0);
 		String [][] map = mapManager.initMap(8, 8); 
 		//mapManager.printAntOnMap(q2);
 		map[q2.x][q2.y] = "q2";

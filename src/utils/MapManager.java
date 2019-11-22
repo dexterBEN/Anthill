@@ -1,67 +1,70 @@
 package utils;
 
-import com.sun.javafx.collections.MapAdapterChange;
+import java.util.Scanner;
 
-import entities.Ant;
-import entities.Fighter;
-import entities.Worker;
+import entities.Position;
+import entities.Queen;
+import entities.QueenChildren;
 
 public class MapManager {
-
-    int width, height;
-    static String[][] map;
+	public static final String ANSI_RED = "\u001B[31m";
+	int width;
+	int height;
+	static String[][] map;
+    Queen redQueen;
+    Queen blueQueen;
     private static final MapManager singletonInstance;
 
     static {
         singletonInstance = new MapManager();
     }
 
-    private MapManager() {}
+    private MapManager() {
+    }
 
     public static MapManager getInstance() {
         return singletonInstance;
     }
+    
+    public void initMap() {
+    	Scanner sc = new Scanner(System.in);
 
-    public static String[][] initMap(int width, int height) {
-        map = new String[width][height];
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if ((i > 0 && i < (width - 1)) && (j > 0 && j < (height - 1))) {
-                    map[i][j] = "  ";
-                } else {
-                    map[i][j] = "* ";
-                }
-            }
-        }
-
-        return map;
+		//set width & height of map:
+		System.out.print("Give map width: ");
+		String widthStr = sc.nextLine();
+		System.out.print("Give map height: ");
+		String heightStr = sc.nextLine();
+		width = Integer.parseInt(widthStr);
+		height = Integer.parseInt(heightStr);
+    	map = new String[width][height];
+    	this.blueQueen = new Queen(new Position(0, 0));
+    	printColonyOnMap(blueQueen);
+    	this.redQueen = new Queen(new Position(width - 1, height - 1));
+    	printColonyOnMap(redQueen);
     }
-
-    public static void drawMap(String map[][], int w, int h) {
-
-        for (int i = 0; i < w; i++) {
-
-            for (int j = 0; j < h; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
+    
+    public String[][] getMap() {
+    	return map;
     }
+    
+    private static void printColonyOnMap(Queen queen) {
+    	map[queen.getPosition().getX()][queen.getPosition().getY()] = ANSI_RED + AntType.QUEEN.getBadge();
+    	queen.getFighters().forEach(MapManager::printAntOnMap);
+    	queen.getWorkers().forEach(MapManager::printAntOnMap);
+	}
+    
+    private static void printAntOnMap(QueenChildren ant) {
+    	map[ant.getPosition().getX()][ant.getPosition().getY()] = ANSI_RED + ant.getAntType().getBadge();
+	}
 
-    public static String printAntOnMap(Ant ant) {
-        String antBadge = "";
-        if (ant instanceof Worker) {
-            antBadge = "w ";
-        } else if (ant instanceof Fighter) {
-            antBadge = "f ";
-        }
+	public int getWidth() {
+		return width;
+	}
 
-        return ant.getBadge();
-
-    }
-
-    public static boolean isEmpty(String map[][], int x, int y) {
-        return map[x][y] == "";
-    }
+	public int getHeight() {
+		return height;
+	}
+    
+    
 
 }
