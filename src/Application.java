@@ -107,6 +107,33 @@ public class Application {
 					}
 				}
 				
+				System.out.println("queen 2: ");
+				for(Ant children: q2.ants) {
+					newX = randInt.nextInt((w-2)+1) + 1;
+					System.out.print("New x:"+newX);
+					
+					newY = randInt.nextInt((h-2)+1) + 1;
+					System.out.println(" New y: "+newY);
+					
+					//check if new pair [X][Y] is free:
+					if(mapManager.isEmpty(map[newX][newY])) {
+						
+						//free space:
+						map[children.x][children.y] = mapManager.freeSpace();
+						
+						children.x = newX;
+						children.y = newY;
+						
+						map[children.x][children.y] = mapManager.printAntOnMap(children);
+						
+					}else {
+						
+						children.x = children.x;
+						children.y = children.y;
+						map[children.x][children.y] = mapManager.printAntOnMap(children);
+					}
+				}
+				
 				mapManager.drawMap(map, w, h);
 				
 				newLine();
