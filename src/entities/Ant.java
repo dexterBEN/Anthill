@@ -77,10 +77,10 @@ public abstract class Ant {
 				ant = new Queen(0, 0, Ant.setId());
 				break;
 			case 1:
-				ant = new Worker(2, 2, Ant.setId());
+				ant = new Worker(0, 0, Ant.setId());
 				break;
 			case 2:
-				ant = new Fighter(4, 4, Ant.setId());
+				ant = new Fighter(0, 0, Ant.setId());
 				break;
 		}
 		

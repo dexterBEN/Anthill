@@ -65,6 +65,10 @@ public class MapManager {
 		
 	}
 	
+	public static String freeSpace() {
+		return "  ";
+	}
+	
 	public static boolean isEmpty(String space) {
 		//return space != "e " || space != "* ";
 		if(space == "  ") {

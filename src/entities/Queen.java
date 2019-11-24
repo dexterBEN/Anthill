@@ -20,12 +20,12 @@ public class Queen extends Ant{
 		List <Ant> ants = new ArrayList<Ant>();
 		Random randInt = new Random();
 		int randomIndex;
+		randomIndex = randInt.nextInt((2-1)+1) + 1;
 		
-		for(int i = 0; i <= 2; i++) 
-		{
-			randomIndex = randInt.nextInt((2-1)+1) + 1;
-			ants.add(Ant.createAnt(randomIndex));
-		}
+		ants.add(Ant.createAnt(1));
+		ants.add(Ant.createAnt(2));
+		ants.add(Ant.createAnt(randomIndex));
+		
 		return ants;
 	}
 
