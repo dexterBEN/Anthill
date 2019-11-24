@@ -1,4 +1,5 @@
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,6 +12,19 @@ public class Application {
 	public static void newLine() {
 		System.out.println();
 		System.out.println();
+	}
+	
+	public static void initChildPos(int n, Queen queen, String[][]map, MapManager mapManager) {
+		int x = n;
+		int y = n;
+		
+		for(Ant child :queen.ants)
+		{
+			child.x = queen.x;
+			child.y = queen.y +x;
+			map[child.x][child.y] = mapManager.printAntOnMap(child);
+			x = x+y;
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -51,21 +65,9 @@ public class Application {
 		mapManager.drawMap(map, w, h);
 		
 		//set pos of children:
-		int y = q1.y;
-		int n = 1;
-		for(Ant children: q1.ants) {
-			children.x = q1.x;
-			children.y = q1.y +n;
-			map[children.x][children.y] = mapManager.printAntOnMap(children);
-			n++;
-		}
+		initChildPos(1, q1, map, mapManager);
+		initChildPos(-1, q2, map, mapManager);
 		
-		n = q2.y;
-		for (Ant children: q2.ants) {
-			children.x = q2.x;
-			children.y = q2.y -n;
-			map[children.x][n -= 1] = mapManager.printAntOnMap(children);
-		}
 		System.out.println("Map after set queen children pos:");
 		mapManager.drawMap(map, w, h);
 		
