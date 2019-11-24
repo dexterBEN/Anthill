@@ -27,6 +27,37 @@ public class Application {
 		}
 	}
 	
+	public static void moveChilds(int x, int y, int mapW, int mapH, List<Ant> ants, String[][]map, MapManager mapManager) {
+		Random randInt = new Random();
+		
+		for(Ant children: ants) {
+			x = randInt.nextInt((mapW-2)+1) + 1;
+			System.out.print("New x:"+x);
+			
+			y = randInt.nextInt((mapH-2)+1) + 1;
+			System.out.println(" New y: "+y);
+			
+			//check if new pair [X][Y] is free:
+			if(mapManager.isEmpty(map[x][y])) {
+				
+				//free space:
+				map[children.x][children.y] = mapManager.freeSpace();
+				
+				children.x = x;
+				children.y = y;
+				
+				map[children.x][children.y] = mapManager.printAntOnMap(children);
+				
+			}else {
+				
+				children.x = children.x;
+				children.y = children.y;
+				map[children.x][children.y] = mapManager.printAntOnMap(children);
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String [][] map;
@@ -75,66 +106,18 @@ public class Application {
 		newLine();
 		
 		//simulation loop:
-		int newX, newY;
+		int newX = 0; 
+		int newY = 0;
+		
 		for(int i = 0; i <= 4; i++) {
 			System.out.println("tour nb: "+i);
 			try {
 				
-				//check position of each child:
-				
 				//generate random XY for each child
-				for(Ant children: q1.ants) {
-					newX = randInt.nextInt((w-2)+1) + 1;
-					System.out.print("New x:"+newX);
-					
-					newY = randInt.nextInt((h-2)+1) + 1;
-					System.out.println(" New y: "+newY);
-					
-					//check if new pair [X][Y] is free:
-					if(mapManager.isEmpty(map[newX][newY])) {
-						
-						//free space:
-						map[children.x][children.y] = mapManager.freeSpace();
-						
-						children.x = newX;
-						children.y = newY;
-						
-						map[children.x][children.y] = mapManager.printAntOnMap(children);
-						
-					}else {
-						
-						children.x = children.x;
-						children.y = children.y;
-						map[children.x][children.y] = mapManager.printAntOnMap(children);
-					}
-				}
+				moveChilds(newX, newY, w, h, q1.ants, map, mapManager);
 				
 				System.out.println("queen 2: ");
-				for(Ant children: q2.ants) {
-					newX = randInt.nextInt((w-2)+1) + 1;
-					System.out.print("New x:"+newX);
-					
-					newY = randInt.nextInt((h-2)+1) + 1;
-					System.out.println(" New y: "+newY);
-					
-					//check if new pair [X][Y] is free:
-					if(mapManager.isEmpty(map[newX][newY])) {
-						
-						//free space:
-						map[children.x][children.y] = mapManager.freeSpace();
-						
-						children.x = newX;
-						children.y = newY;
-						
-						map[children.x][children.y] = mapManager.printAntOnMap(children);
-						
-					}else {
-						
-						children.x = children.x;
-						children.y = children.y;
-						map[children.x][children.y] = mapManager.printAntOnMap(children);
-					}
-				}
+				moveChilds(newX, newY, w, h, q2.ants, map, mapManager);
 				
 				mapManager.drawMap(map, w, h);
 				
