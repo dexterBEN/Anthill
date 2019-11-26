@@ -2,8 +2,10 @@ package entities;
 
 public class Worker extends Ant {
 	
+	
 	public Worker(int x, int y, String id) {
 		super(x, y, id);
+		this.type = "W";
 		// TODO Auto-generated constructor stub
 	}
 	boolean food = false;
@@ -14,9 +16,21 @@ public class Worker extends Ant {
 	}
 
 	@Override
-	public String getBadge() {
+	public String getBadge(String color) {
 		// TODO Auto-generated method stub
-		return "w ";
+		if(color.equals("RED")) {
+			return "\u001b[31mW "+"\u001b[0m";
+		}else {
+			
+			return "\033[32mW "+"\u001b[0m";
+		}
+	}
+
+	@Override
+	public boolean checkAround(Queen attacker, Queen defender) {
+		System.out.println("CHECK FROM WORKER");
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	/*

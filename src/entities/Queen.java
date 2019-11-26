@@ -9,6 +9,7 @@ public class Queen extends Ant{
 	
 	public Queen(int x, int y, String id) {
 		super(x, y, id);
+		this.type = "Q";
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,8 +31,20 @@ public class Queen extends Ant{
 	}
 
 	@Override
-	public String getBadge() {
+	public String getBadge(String color) {
 		
-		return "Q";
+		if(color.equals("RED")) {
+			return "\u001b[31mQ "+"\u001b[0m";
+		}else {
+			
+			return "\033[32mQ "+"\u001b[0m";
+		}
+	}
+
+	@Override
+	public boolean checkAround(Queen attacker, Queen defender) {
+		// TODO Auto-generated method stub
+		return false;
+		
 	}
 }

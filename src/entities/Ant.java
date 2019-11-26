@@ -5,44 +5,24 @@ import java.util.List;
 import java.util.UUID;
 
 public abstract class Ant {
+	private String color;
+	String type;
 	
-	//Purpose ==> each time the queen call "giveBirth" i choose randomly between WORKER/FIGHTER
-//	public enum ANT_TYPES{
-//		QUEEN("Q"),
-//		WORKER(2){
-//			
-//			public Ant anfFactory() {
-//				
-//				return  new Worker(2, 2, Ant.setId());
-//			}
-//			
-//		},
-//		FIGHTER(3);
-//		
-//		private static ANT_TYPES[] types = ANT_TYPES.values(); 
-//		
-//		//Constructor
-//		ANT_TYPES(int type){
-//			this.type = type;
-//		}
-//		
-//		
-//		abstract Ant anfFactory();
-//		
-//		static Ant createFromIndex(int i) {
-//			
-//			ANT_TYPES.values()[i]
-//		}
-//		
-//		//public
-//	}
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	String [] antTypes = {"QUEEN","WORKER","FIGHTER"};
 	
 	public String id;
+	public String label;
 	public int x, y;
 	
-	
-	//constructor
 	public Ant(int x, int y, String id) {
 		this.x = x;
 		this.y = y;
@@ -65,7 +45,7 @@ public abstract class Ant {
 		return 0;
 	}
 	
-	//
+
 	public static Ant createAnt(int i) {
 		Ant ant = null;
 		
@@ -92,7 +72,19 @@ public abstract class Ant {
 	    //System.out.println("uuid = " + uuid);
 	    return uuid;
 	}
+	
+	public void killEnemy(Queen defender, int x, int y) {
+		for(Ant child : defender.ants) {
+			if (child.x == x && child.y == y) {
+				// remove it
+				defender.ants.remove(child);
+				break;
+			}
+		}
+	}
 
-	public abstract String getBadge();
+	public abstract String getBadge(String color);
+	
+	public abstract boolean checkAround(Queen attacker, Queen defender);
 	
 }
